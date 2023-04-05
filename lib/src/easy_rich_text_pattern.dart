@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 
 typedef EasyRichTextMatchBuilder = InlineSpan Function(
@@ -45,7 +44,7 @@ class EasyRichTextPattern {
   final String? urlType;
 
   ///GestureRecognizer
-  final GestureRecognizer? recognizer;
+  final Function(String)? recognizerOnTap;
 
   ///set true if the targetString contains specified characters \[]()^*+?.$-{}|!
   final bool hasSpecialCharacters;
@@ -74,7 +73,7 @@ class EasyRichTextPattern {
       this.subScript = false,
       this.style,
       this.urlType,
-      this.recognizer,
+      this.recognizerOnTap,
       this.hasSpecialCharacters = false,
       this.matchOption = 'all',
       this.matchBuilder,
@@ -92,7 +91,7 @@ class EasyRichTextPattern {
     subScript,
     style,
     urlType,
-    recognizer,
+    recognizerOnTap,
     hasSpecialCharacters,
     matchOption,
     matchBuilder,
@@ -112,7 +111,7 @@ class EasyRichTextPattern {
       subScript: subScript ?? this.subScript,
       style: style ?? this.style,
       urlType: urlType ?? this.urlType,
-      recognizer: recognizer ?? this.recognizer,
+      recognizerOnTap: recognizerOnTap ?? this.recognizerOnTap,
       hasSpecialCharacters: hasSpecialCharacters ?? this.hasSpecialCharacters,
       matchOption: matchOption ?? this.matchOption,
       matchBuilder: matchBuilder ?? this.matchBuilder,

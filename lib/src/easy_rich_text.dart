@@ -90,7 +90,7 @@ class EasyRichText extends StatelessWidget {
   final bool selectable;
 
   ///toolbar options for selectable text
-  final Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
+  // final Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
 
   ///selection controls for selectable text
   final TextSelectionControls? selectionControls;
@@ -151,45 +151,47 @@ class EasyRichText extends StatelessWidget {
   /// If null, the ambient [DefaultSelectionStyle] is used (if any); failing
   /// that, the selection color defaults to [DefaultSelectionStyle.defaultColor]
   /// (semi-transparent grey).
-  final Color? selectionColor;
+  // final Color? selectionColor;
 
-  EasyRichText(this.text,
-      {Key? key,
-      this.patternList,
-      this.defaultStyle,
-      this.textAlign = TextAlign.start,
-      this.textDirection,
-      this.softWrap = true,
-      this.overflow = TextOverflow.clip,
-      this.textScaleFactor = 1.0,
-      this.maxLines,
-      this.locale,
-      this.strutStyle,
-      this.textWidthBasis = TextWidthBasis.parent,
-      this.caseSensitive = true,
-      this.selectable = false,
-      this.contextMenuBuilder,
-      this.selectionControls,
-      this.scrollPhysics,
-      this.textHeightBehavior,
-      this.enableInteractiveSelection = true,
-      this.autofocus = false,
-      this.cursorRadius,
-      this.dragStartBehavior = DragStartBehavior.start,
-      this.onSelectionChanged,
-      this.selectionHeightStyle = ui.BoxHeightStyle.tight,
-      this.selectionWidthStyle = ui.BoxWidthStyle.tight,
-      this.minLines,
-      this.cursorHeight,
-      this.cursorWidth = 2.0,
-      this.cursorColor,
-      this.focusNode,
-      this.semanticsLabel,
-      this.showCursor = false,
-      this.multiLine = false,
-      this.dotAll = false,
-      this.unicode = false,
-      this.selectionColor});
+  EasyRichText(
+    this.text, {
+    Key? key,
+    this.patternList,
+    this.defaultStyle,
+    this.textAlign = TextAlign.start,
+    this.textDirection,
+    this.softWrap = true,
+    this.overflow = TextOverflow.clip,
+    this.textScaleFactor = 1.0,
+    this.maxLines,
+    this.locale,
+    this.strutStyle,
+    this.textWidthBasis = TextWidthBasis.parent,
+    this.caseSensitive = true,
+    this.selectable = false,
+    // this.contextMenuBuilder,
+    this.selectionControls,
+    this.scrollPhysics,
+    this.textHeightBehavior,
+    this.enableInteractiveSelection = true,
+    this.autofocus = false,
+    this.cursorRadius,
+    this.dragStartBehavior = DragStartBehavior.start,
+    this.onSelectionChanged,
+    this.selectionHeightStyle = ui.BoxHeightStyle.tight,
+    this.selectionWidthStyle = ui.BoxWidthStyle.tight,
+    this.minLines,
+    this.cursorHeight,
+    this.cursorWidth = 2.0,
+    this.cursorColor,
+    this.focusNode,
+    this.semanticsLabel,
+    this.showCursor = false,
+    this.multiLine = false,
+    this.dotAll = false,
+    this.unicode = false,
+    // this.selectionColor,
+  });
 
   _launchURL(String str) async {
     String url = str;
@@ -523,7 +525,10 @@ class EasyRichText extends StatelessWidget {
         } else {
           inlineSpan = TextSpan(
             text: str,
-            recognizer: pattern.recognizer,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                pattern.recognizerOnTap?.call(str);
+              },
             style: pattern.style == null
                 ? DefaultTextStyle.of(context).style
                 : pattern.style,
@@ -554,7 +559,7 @@ class EasyRichText extends StatelessWidget {
                 : defaultStyle,
             children: textSpanList),
         scrollPhysics: scrollPhysics,
-        contextMenuBuilder: contextMenuBuilder,
+        // contextMenuBuilder: contextMenuBuilder,
         maxLines: maxLines,
         strutStyle: strutStyle,
         textAlign: textAlign,
@@ -594,7 +599,7 @@ class EasyRichText extends StatelessWidget {
         textDirection: textDirection,
         textScaleFactor: textScaleFactor,
         textWidthBasis: textWidthBasis,
-        selectionColor: selectionColor,
+        // selectionColor: selectionColor,
       );
     }
   }

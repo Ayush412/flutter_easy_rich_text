@@ -220,11 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   patternList: [
                     EasyRichTextPattern(
                       targetString: 'recognizer',
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // ignore: avoid_print
-                          print("Tap recognizer to print this sentence.");
-                        },
+                      recognizerOnTap: print,
                       style: const TextStyle(
                         decoration: TextDecoration.underline,
                       ),
